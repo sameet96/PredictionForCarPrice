@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div style="color:blue">
+        <form action="{{ url_for('predict')}}" method="post">
+            <h2>Prediction for Car Price</h2>
+            <h3>Year</h3>
+            <input id="first" name="year" type="number">
+{#            <h3>How Many Keys do you have?</h3>#}
+{#            <input id="keys" name="number_of_keys" required="required">#}
+            <h3>How Many Miles have you Driven?</h3>
+            <input id="third" name="miles" required="required">
+            <h3>What is Highway mileage of the car?</h3>
+            <input id="hwy_mpg" name="highway_mpg" required="required">
+            <h3>What is City mileage of the car?</h3>
+            <input id="city_mpg" name="city_mpg" required="required">
+{#            <h3>How Many Doors car have?</h3>#}
+{#            <input id="doors" name="number_of_doors" required="required">#}
+            <h3>How Many Gears car has? Enter Number gears or "0" if CVT.</h3>
+            <input id="gears" name="number_of_gears" required="required">
+            <h3>What Is the exterior color of the car?</h3><br>
+            <select name="ext_color" id="ext_color" required="required">
+                <option value="Beige">Beige</option>
+                <option value="Black">Black</option>
+                <option value="Blue">Blue</option>
+                <option value="Burgundy">Burgundy</option>
+                <option value="Gold">Gold</option>
+                <option value="Gray">Gray</option>
+                <option value="Green">Green</option>
+                <option value="Pink">Pink</option>
+                <option value="Purple">Purple</option>
+                <option value="Red">Red</option>
+                <option value="Silver">Silver</option>
+                <option value="White">White</option>
+                <option value="Yellow">Yellow</option>
+            </select>
+            <h3>Make of the Car</h3><br><select name="car_make" id="car_make" required="required">
+                <option value="Acura">Acura</option>
+                <option value="Alfa Romeo">Alfa_Romeo</option>
+                <option value="Audi">Audi</option>
+                <option value="BMW">BMW</option>
+                <option value="Buick">Buick</option>
+                <option value="Cadillac">Cadillac</option>
+                <option value="Chevrolet">Chevrolet</option>
+                <option value="Crysler">Crysler</option>
+                <option value="Dodge">Dodge</option>
+                <option value="Fiat">Fiat</option>
+                <option value="Ford">Ford</option>
+                <option value="Genesis">Genesis</option>
+                <option value="GMC">GMC</option>
+                <option value="Honda">Honda</option>
+                <option value="Hyundai">Hyundai</option>
+                <option value="Infiniti">Infiniti</option>
+                <option value="Jaguar">Jaguar</option>
+                <option value="Jeep">Jeep</option>
+                <option value="Kia">Kia</option>
+                <option value="Land Rover">Land Rover</option>
+                <option value="Lexus">Lexus</option>
+                <option value="Lincoln">Lincoln</option>
+                <option value="Maserati">Maserati</option>
+                <option value="Mazda">Mazda</option>
+                <option value="Mercedes Benz">Mercedes_Benz</option>
+                <option value="Mercury">Mercury</option>
+                <option value="Mini">Mini</option>
+                <option value="Mitsubishi">Mitsubishi</option>
+                <option value="Nissan">Nissan</option>
+                <option value="Porsche">Porsche</option>
+                <option value="RAM">RAM</option>
+                <option value="Scion">Scion</option>
+                <option value="Smart">Smart</option>
+                <option value="Subaru">Subaru</option>
+                <option value="Toyota">Toyota</option>
+                <option value="Volkswagen">Volkswagen</option>
+                <option value="Volvo">Volvo</option>
+            </select>
+            <h3>Transmission type</h3><br><select name="Transmission_type" id="transmission" required="required">
+                <option value="Manual">Manual</option>
+                <option value="Auto">Auto</option>
+            </select>
+            <h3>Car type</h3><br><select name="car_type" id="car_type" required="required">
+                <option value="Convertible">Convertible</option>
+                <option value="Coupe">Coupe</option>
+                <option value="Hatchback">Hatchback</option>
+                <option value="Minivan">Minivan</option>
+                <option value="SUV">SUV</option>
+                <option value="Sedan">Sedan</option>
+                <option value="Truck">Truck</option>
+                <option value="Van">Van</option>
+                <option value="Wagon">Wagon</option>
+            </select>
+            <br><br><button id="sub" type="submit" value="Submit">Calculate the Selling Price</button>
+            <br>
+
+
+
+
+        </form>
+
+
+
+        <br><br><h3>{{ prediction_text }}</h3>
+    </div>
+
+
+
+
+    <style>
+        body {
+            background-color: lightslategray;
+            text-align: center;
+            padding: 0px;
+        }
+
+        #keys {
+            font-size: 18px;
+            width: 100px;
+            height: 23px;
+            top: 23px;
+        }
+
+        #car_type {
+            width: 99px;
+            height: 43px;
+            text-align: center;
+            border-radius: 14px;
+            font-size: 18px;
+        }
+
+        #third {
+            width: 83px;
+            height: 43px;
+            text-align: center;
+            border-radius: 14px;
+            font-size: 20px;
+        }
+
+        #third:hover {
+            background-color: coral;
+        }
+
+        #hwy_mpg {
+            width: 99px;
+            height: 43px;
+            text-align: center;
+            border-radius: 14px;
+            font-size: 18px;
+        }
+
+        #hwy_mpg:hover {
+            background-color: coral;
+        }
+
+        #city_mpg {
+            width: 99px;
+            height: 43px;
+            text-align: center;
+            border-radius: 14px;
+            font-size: 18px;
+        }
+
+        #city_mpg:hover {
+            background-color: coral;
+        }
+
+        #doors {
+            width: 120px;
+            height: 43px;
+            text-align: center;
+            border-radius: 14px;
+            font-size: 18px;
+        }
+
+        #doors:hover {
+            background-color: darkcyan;
+        }
+        #gears {
+            width: 120px;
+            height: 43px;
+            text-align: center;
+            border-radius: 14px;
+            font-size: 18px;
+        }
+
+        #gears:hover {
+            background-color: darkcyan;
+        }
+
+        #ext_color {
+            width: 120px;
+            height: 43px;
+            text-align: center;
+            border-radius: 14px;
+            font-size: 18px;
+        }
+
+        #ext_color:hover {
+            background-color: darkcyan;
+        }
+
+        #car_make {
+            width: 120px;
+            height: 43px;
+            text-align: center;
+            border-radius: 14px;
+            font-size: 18px;
+        }
+
+        #car_make:hover {
+            background-color: darkcyan;
+        }
+
+        #transmission {
+            width: 120px;
+            height: 43px;
+            text-align: center;
+            border-radius: 14px;
+            font-size: 18px;
+        }
+
+        #transmission:hover {
+            background-color: darkcyan;
+        }
+
+        #first {
+            border-radius: 14px;
+            height: 25px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        #second {
+            border-radius: 14px;
+            height: 25px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        #third {
+            border-radius: 14px;
+            height: 25px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        #fourth {
+            border-radius: 14px;
+            height: 25px;
+            font-size: 20px;
+            text-align: center;
+        }
+    </style>
+</body>
+
+</html>
